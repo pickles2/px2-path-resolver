@@ -34,13 +34,41 @@
 _px2-path-resolver_ は、[Pickles 2](http://pickles2.pxt.jp/) に、相対パス・絶対パスでの書き出しオプションを追加します。
 
 
-## 使い方 - Usage
+## 導入方法 - Setup
 
-```php
+### 1. [Pickles 2](http://pickles2.pxt.jp/) をセットアップ
+
+### 2. composer.json に、パッケージ情報を追加
+
+```
+{
+    "require": {
+        "tomk79/px2-path-resolver": "2.*"
+    }
+}
+```
+
+### 3. composer update
+
+更新したパッケージ情報を反映します。
+
+```
+$ composer update
+```
+
+### 4. config.php を更新
+
+`$conf->funcs->before_output` に、プラグイン設定を追加します。
+
+```
+<?php
+return call_user_func( function(){
+
+  /* (中略) */
 
   // funcs: Before output
   $conf->funcs->before_output = [
-    // 相対パス・絶対パスを変換して出力する
+    // px2-path-resolver - 相対パス・絶対パスを変換して出力する
     'tomk79\pickles2\pathResolver\main::exec('.json_encode(array(
       'to' => 'relate',
       'supply_index_filename' => true
@@ -55,6 +83,11 @@ _px2-path-resolver_ は、[Pickles 2](http://pickles2.pxt.jp/) に、相対パ�
       //     - false: 補わない (default)
 
   ];
+
+  /* (中略) */
+
+  return $conf;
+} );
 ```
 
 
