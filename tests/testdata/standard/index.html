@@ -1,0 +1,32 @@
+<a href="/abc/defDummy/../def/./ghi.html">test1</a><!-- 途中の .. や . は解決される。 -->
+<a href="../../../../abc/def/../def/./ghi.html">test2</a><!-- ルート階層にあるため、先頭の .. は捨てられる。 -->
+
+
+<link href="/common/scripts/../styles/contents.css" /><!-- linkタグも書き換わる -->
+
+<img src="/common/scripts/../images/title.gif" alt="img1" /><!-- src属性も書き換わる -->
+<script src="/common/aaa/../scripts/contents.js"></script><!-- src属性も書き換わる -->
+
+<a href="./">test3-1</a><!-- supply_index_filenameオプションにより、index.html が追加される -->
+<a href="./#test">test3-2</a><!-- supply_index_filenameオプションにより、index.html が追加される -->
+<a href="./?test=abc">test3-3</a><!-- supply_index_filenameオプションにより、index.html が追加される -->
+<a href="./?test=abc#test">test3-4</a><!-- supply_index_filenameオプションにより、index.html が追加される -->
+
+<a href="#test4">test4</a><!-- アンカーだけの場合は変換しない -->
+
+<style>
+@import "/common/scripts/../styles/contents1.css";
+@import '/common/scripts/../styles/contents2.css';
+@import "/common/scripts/../styles/contents3.css" all and (max-width:580px);
+@import '/common/scripts/../styles/contents4.css' all and (max-width:580px);
+@import "/common/scripts/../styles/contents1.css?time=1234567890";
+@import '/common/scripts/../styles/contents2.css?time=1234567890';
+@import "/common/scripts/../styles/contents3.css?time=1234567890" all and (max-width:580px);
+@import '/common/scripts/../styles/contents4.css?time=1234567890' all and (max-width:580px);
+
+.test_obj{
+	background-image: url(/common/scripts/../images/title1.gif);
+	background-image: url('/common/scripts/../images/title2.gif');
+	background-image: url("/common/scripts/../images/title3.gif");
+}
+</style>
