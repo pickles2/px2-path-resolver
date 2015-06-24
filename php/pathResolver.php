@@ -160,7 +160,7 @@ class main{
 	 * 変換後の新しいパスを取得
 	 */
 	private function get_new_path( $path ){
-		if( preg_match( '/^([a-zA-Z0-9]+\:|\/\/)/', $path ) ){
+		if( preg_match( '/^(?:[a-zA-Z0-9]+\:|\/\/|\#)/', $path ) ){
 			return $path;
 		}
 		$cd = $this->px->href( $this->px->req()->get_request_file_path() );
@@ -183,6 +183,11 @@ class main{
 			default:
 				// 処理を行わない
 				break;
+		}
+
+		if( $this->options->supply_index_filename ){
+			// 省略されたインデックスファイル名を付与
+			$path = preg_replace('/\/((?:\?|\#).*)?$/si','/'.$this->px->get_directory_index_primary().'$1',$path);
 		}
 
 		return $path;

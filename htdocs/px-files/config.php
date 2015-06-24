@@ -149,12 +149,17 @@ return call_user_func( function(){
 	$conf->funcs->before_output = [
 		// 相対パス・絶対パスを変換して出力する
 		'tomk79\pickles2\pathResolver\main::exec('.json_encode(array(
-			'to' => 'relate'
+			'to' => 'relate',
+			'supply_index_filename' => true
 		)).')' ,
 			// options
-			//   - relate: 相対パスへ変換
-			//   - absolute: 絶対パスへ変換
-			//   - pass: 変換を行わない(default)
+			//   string 'to':
+			//     - relate: 相対パスへ変換
+			//     - absolute: 絶対パスへ変換
+			//     - pass: 変換を行わない(default)
+			//   bool 'supply_index_filename':
+			//     - true: 省略されたindexファイル名を補う
+			//     - false: 補わない (default)
 
 	];
 
