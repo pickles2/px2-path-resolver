@@ -1,4 +1,33 @@
+<?php ob_start(); ?>
+<!-- CSSの記述 -->
+<style type="text/css">
+@import '<?= htmlspecialchars($px->path_files('contents.css')); ?>';
+@import '<?= htmlspecialchars($px->path_files('contents.css#hoge')); ?>' all;
+@import "<?= htmlspecialchars($px->path_files('contents.css?time=1234567890#hoge')); ?>";
+@import "<?= htmlspecialchars($px->path_files('contents.css')); ?>" all;
+@import './index_files/contents.css';
+@import './index_files/contents.css#hoge' all;
+@import "./index_files/contents.css?time=1234567890#hoge";
+@import "./index_files/contents.css" all;
+.contents .cont_hoge{
+    background-image:url ( <?= htmlspecialchars($px->path_files('image.png')); ?> );
+    background-image:url ("<?= htmlspecialchars($px->path_files('image.png')); ?>");
+    background-image:url ('<?= htmlspecialchars($px->path_files('image.png')); ?>');
+    background-image:url(./index_files/image.css);
+    background-image:url("./index_files/image.css");
+    background-image:url('./index_files/image.css');
+}
+</style>
+<!-- CSSを外部化する場合 -->
+<link rel="stylesheet" href="./index_files/contents.css" type="text/css" />
+<link rel="stylesheet" href="<?= htmlspecialchars($px->path_files('contents.css')); ?>" type="text/css" />
+<?php $px->bowl()->send( ob_get_clean(), 'head' ); ?>
 
+
+<p>
+	<a href="../index.html?from=back">トップページへ戻る</a><br />
+	<a href="<?= htmlspecialchars('/index.html?from=back'); ?>">トップページへ戻る</a><br />
+</p>
 <p>
 	このディレクトリに配置されているファイルは、コンテンツのサンプルコード集です。<br />
 </p>

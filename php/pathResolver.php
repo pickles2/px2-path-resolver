@@ -96,6 +96,13 @@ class main{
 			$retRow->setAttribute('action', $val);
 		}
 
+		$ret = $html->find('style');
+		foreach( $ret as $retRow ){
+			$val = $retRow->innertext;
+			$val = $this->path_resolve_in_css($val);
+			$retRow->innertext = $val;
+		}
+
 		$src = $html->outertext;
 
 		return $src;
@@ -107,6 +114,8 @@ class main{
 	private function path_resolve_in_css( $bin ){
 
 		$rtn = '';
+
+		// url()
 		while( 1 ){
 			if( !preg_match( '/^(.*?)url\s*\\((.*?)\\)(.*)$/si', $bin, $matched ) ){
 				$rtn .= $bin;
@@ -121,6 +130,26 @@ class main{
 			$res = $this->get_new_path( $res );
 			$rtn .= $res;
 			$rtn .= '")';
+			$bin = $matched[3];
+		}
+
+		// @import
+		$bin = $rtn;
+		$rtn = '';
+		while( 1 ){
+			if( !preg_match( '/^(.*?)@import\s*([^\s\;]*)(.*)$/si', $bin, $matched ) ){
+				$rtn .= $bin;
+				break;
+			}
+			$rtn .= $matched[1];
+			$rtn .= '@import "';
+			$res = trim( $matched[2] );
+			if( preg_match( '/^(\"|\')(.*)\1$/si', $res, $matched2 ) ){
+				$res = trim( $matched2[2] );
+			}
+			$res = $this->get_new_path( $res );
+			$rtn .= $res;
+			$rtn .= '"';
 			$bin = $matched[3];
 		}
 
