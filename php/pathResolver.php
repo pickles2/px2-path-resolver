@@ -185,6 +185,8 @@ class main{
 				break;
 		}
 
+		$path = $this->px->fs()->normalize_path($path);
+
 		if( $this->options->supply_index_filename ){
 			// 省略されたインデックスファイル名を付与
 			$path = preg_replace('/\/((?:\?|\#).*)?$/si','/'.$this->px->get_directory_index_primary().'$1',$path);
