@@ -89,6 +89,19 @@ class main{
 			$retRow->setAttribute('src', $val);
 		}
 
+		$ret = $html->find('*[style]');
+		foreach( $ret as $retRow ){
+			$val = $retRow->getAttribute('style');
+			$val = str_replace('&quot;', '"', $val);
+			$val = str_replace('&lt;', '<', $val);
+			$val = str_replace('&gt;', '>', $val);
+			$val = $this->path_resolve_in_css($val);
+			$val = str_replace('"', '&quot;', $val);
+			$val = str_replace('<', '&lt;', $val);
+			$val = str_replace('>', '&gt;', $val);
+			$retRow->setAttribute('style', $val);
+		}
+
 		$ret = $html->find('form[action]');
 		foreach( $ret as $retRow ){
 			$val = $retRow->getAttribute('action');

@@ -53,6 +53,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title3.gif");', '/').'/s', $output) );
 
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title3.gif&quot;);', '/').'/s', $output) );
+
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
@@ -79,6 +83,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title3.gif");', '/').'/s', $output) );
+
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title3.gif&quot;);', '/').'/s', $output) );
 
 
 		// 後始末
@@ -125,6 +133,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title3.gif");', '/').'/s', $output) );
 
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title3.gif&quot;);', '/').'/s', $output) );
+
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute'] );
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
@@ -151,6 +163,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title3.gif");', '/').'/s', $output) );
+
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title3.gif&quot;);', '/').'/s', $output) );
 
 
 		// 後始末
@@ -196,6 +212,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title3.gif");', '/').'/s', $output) );
 
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title3.gif&quot;);', '/').'/s', $output) );
+
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate_supply'] );
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
@@ -222,6 +242,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title3.gif");', '/').'/s', $output) );
+
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title3.gif&quot;);', '/').'/s', $output) );
 
 
 		// 後始末
@@ -266,6 +290,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title3.gif");', '/').'/s', $output) );
 
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title3.gif&quot;);', '/').'/s', $output) );
+
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute_supply'] );
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
@@ -292,6 +320,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title3.gif");', '/').'/s', $output) );
+
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/images/title3.gif&quot;);', '/').'/s', $output) );
 
 
 		// 後始末
@@ -338,6 +370,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/scripts/../images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/scripts/../images/title3.gif");', '/').'/s', $output) );
 
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/scripts/../images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/scripts/../images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/scripts/../images/title3.gif&quot;);', '/').'/s', $output) );
+
 
 		// 後始末
 		$output = $this->passthru( [
@@ -380,6 +416,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/scripts/../images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/scripts/../images/title2.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/scripts/../images/title3.gif");', '/').'/s', $output) );
+
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/scripts/../images/title1.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/scripts/../images/title2.gif&quot;);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;/common/scripts/../images/title3.gif&quot;);', '/').'/s', $output) );
 
 
 		// 後始末
