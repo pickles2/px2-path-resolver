@@ -200,9 +200,14 @@ class main{
 
 		$path = $this->px->fs()->normalize_path($path);
 
-		if( $this->options->supply_index_filename ){
+		if( @is_null($this->options->supply_index_filename) ){
+			// null なら処理しない
+		}elseif( $this->options->supply_index_filename ){
 			// 省略されたインデックスファイル名を付与
 			$path = preg_replace('/\/((?:\?|\#).*)?$/si','/'.$this->px->get_directory_index_primary().'$1',$path);
+		}else{
+			// 省略できるインデックスファイル名を削除
+			$path = preg_replace('/\/(?:'.$this->px->get_directory_index_preg_pattern().')((?:\?|\#).*)?$/si','/$1',$path);
 		}
 
 		return $path;
