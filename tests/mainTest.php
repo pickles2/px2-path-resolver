@@ -93,6 +93,9 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title2.gif&quot;);', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;../common/images/title3.gif&quot;);', '/').'/s', $output) );
 
+		// 属性値中の改行を削除してしまわないことを確認するテスト。
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<p><img src="about:blank" alt="attr', '/').'(?:\r\n|\r|\n)'.preg_quote('test', '/').'(?:\r\n|\r|\n)'.preg_quote('1" /></p>', '/').'/s', $output) );
+
 
 		// 後始末
 		$output = $this->passthru( [
