@@ -99,11 +99,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -181,11 +181,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -261,11 +261,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -343,11 +343,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -424,11 +424,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -505,11 +505,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -555,11 +555,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -603,11 +603,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
@@ -651,11 +651,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 後始末
 		$output = $this->passthru( [
-			'php', __DIR__.'/../htdocs/.px_execute.php', '/?PX=clearcache'
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
 		clearstatcache();
-		$this->assertTrue( !is_dir( __DIR__.'/../htdocs/caches/p/' ) );
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
 	}
