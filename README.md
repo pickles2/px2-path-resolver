@@ -1,4 +1,4 @@
-# tomk79/px2-path-resolver
+# pickles2/px2-path-resolver
 
 
 <table>
@@ -13,19 +13,19 @@
     <tr>
       <th>master</th>
       <td align="center">
-        <a href="https://travis-ci.org/tomk79/px2-path-resolver"><img src="https://secure.travis-ci.org/tomk79/px2-path-resolver.svg?branch=master"></a>
+        <a href="https://travis-ci.org/pickles2/px2-path-resolver"><img src="https://secure.travis-ci.org/pickles2/px2-path-resolver.svg?branch=master"></a>
       </td>
       <td align="center">
-        <a href="https://ci.appveyor.com/project/tomk79/px2-path-resolver"><img src="https://ci.appveyor.com/api/projects/status/9u7o6tf510e8r7e0/branch/master?svg=true"></a>
+        <a href="https://ci.appveyor.com/project/pickles2/px2-path-resolver"><img src="https://ci.appveyor.com/api/projects/status/9u7o6tf510e8r7e0/branch/master?svg=true"></a>
       </td>
     </tr>
     <tr>
       <th>develop</th>
       <td align="center">
-        <a href="https://travis-ci.org/tomk79/px2-path-resolver"><img src="https://secure.travis-ci.org/tomk79/px2-path-resolver.svg?branch=develop"></a>
+        <a href="https://travis-ci.org/pickles2/px2-path-resolver"><img src="https://secure.travis-ci.org/pickles2/px2-path-resolver.svg?branch=develop"></a>
       </td>
       <td align="center">
-        <a href="https://ci.appveyor.com/project/tomk79/px2-path-resolver"><img src="https://ci.appveyor.com/api/projects/status/9u7o6tf510e8r7e0/branch/develop?svg=true"></a>
+        <a href="https://ci.appveyor.com/project/pickles2/px2-path-resolver"><img src="https://ci.appveyor.com/api/projects/status/9u7o6tf510e8r7e0/branch/develop?svg=true"></a>
       </td>
     </tr>
   </tbody>
@@ -43,7 +43,7 @@ _px2-path-resolver_ は、[Pickles 2](http://pickles2.pxt.jp/) に、相対パ�
 ```
 {
     "require": {
-        "tomk79/px2-path-resolver": "2.*"
+        "pickles2/px2-path-resolver": "2.*"
     }
 }
 ```
