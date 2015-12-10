@@ -52,6 +52,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents2.css?time=1234567890";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents3.css?time=1234567890" all and (max-width:580px);', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents4.css?time=1234567890" all and (max-width:580px);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents1.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents2.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents3.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents4.css");', '/').'/s', $output) );
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title2.gif");', '/').'/s', $output) );
@@ -84,6 +88,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents2.css?time=1234567890";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents3.css?time=1234567890" all and (max-width:580px);', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents4.css?time=1234567890" all and (max-width:580px);', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents1.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents2.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents3.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents4.css");', '/').'/s', $output) );
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title2.gif");', '/').'/s', $output) );
