@@ -75,18 +75,19 @@ class main{
 			DEFAULT_SPAN_TEXT // $defaultSpanText
 		);
 
-		$ret = $html->find('*[href]');
-		foreach( $ret as $retRow ){
-			$val = $retRow->getAttribute('href');
-			$val = $this->get_new_path($val);
-			$retRow->setAttribute('href', $val);
-		}
+		$conf_dom_selectors = array(
+			'*[href]'=>'href',
+			'*[src]'=>'src',
+			'form[action]'=>'action',
+		);
 
-		$ret = $html->find('*[src]');
-		foreach( $ret as $retRow ){
-			$val = $retRow->getAttribute('src');
-			$val = $this->get_new_path($val);
-			$retRow->setAttribute('src', $val);
+		foreach( $conf_dom_selectors as $selector=>$attr_name ){
+			$ret = $html->find($selector);
+			foreach( $ret as $retRow ){
+				$val = $retRow->getAttribute($attr_name);
+				$val = $this->get_new_path($val);
+				$retRow->setAttribute($attr_name, $val);
+			}
 		}
 
 		$ret = $html->find('*[style]');
@@ -100,13 +101,6 @@ class main{
 			$val = str_replace('<', '&lt;', $val);
 			$val = str_replace('>', '&gt;', $val);
 			$retRow->setAttribute('style', $val);
-		}
-
-		$ret = $html->find('form[action]');
-		foreach( $ret as $retRow ){
-			$val = $retRow->getAttribute('action');
-			$val = $this->get_new_path($val);
-			$retRow->setAttribute('action', $val);
 		}
 
 		$ret = $html->find('style');
