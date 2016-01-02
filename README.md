@@ -66,6 +66,21 @@ return call_user_func( function(){
 
   /* (中略) */
 
+  // processor
+  $conf->funcs->processor->html = [
+    // px2-path-resolver - 共通コンテンツのリンクやリソースのパスを解決する
+    //   このAPIは、サイトマップCSV上で path と content が異なるパスを参照している場合に、
+    //   相対的に記述されたリンクやリソースのパスがあわなくなる問題を解決します。
+    'tomk79\pickles2\pathResolver\main::resolve_common_contents()' ,
+
+    // テーマ
+    // 'theme'=>'pickles2\themes\pickles\theme::exec' ,
+    'theme'=>'(API name of theme package)' ,
+
+  ];
+
+  /* (中略) */
+
   // funcs: Before output
   $conf->funcs->before_output = [
     // px2-path-resolver - 相対パス・絶対パスを変換して出力する

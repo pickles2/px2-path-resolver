@@ -104,6 +104,11 @@ return call_user_func( function(){
 	$conf->funcs->processor = new stdClass;
 
 	$conf->funcs->processor->html = [
+		// px2-path-resolver - 共通コンテンツのリンクやリソースのパスを解決する
+		//   このAPIは、サイトマップCSV上で path と content が異なるパスを参照している場合に、
+		//   相対的に記述されたリンクやリソースのパスがあわなくなる問題を解決します。
+		'tomk79\pickles2\pathResolver\main::resolve_common_contents()' ,
+
 		// ページ内目次を自動生成する
 		'picklesFramework2\processors\autoindex\autoindex::exec' ,
 
@@ -148,17 +153,6 @@ return call_user_func( function(){
 	// funcs: Before output
 	$options_json = file_get_contents(__DIR__.'/options.json');
 	$conf->funcs->before_output = [
-		// px2-path-resolver - 相対パス・絶対パスを変換して出力する
-		//   options
-		//     string 'to':
-		//       - relate: 相対パスへ変換
-		//       - absolute: 絶対パスへ変換
-		//       - pass: 変換を行わない(default)
-		//     bool 'supply_index_filename':
-		//       - true: 省略されたindexファイル名を補う
-		//       - false: 省略できるindexファイル名を削除
-		//       - null: そのまま (default)
-		'tomk79\pickles2\pathResolver\main::exec('.$options_json.')' ,
 	];
 
 

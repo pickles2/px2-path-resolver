@@ -1,24 +1,14 @@
 <?php
 /**
- * Pickles2 DEC CORE class
+ * pickles2/px2-path-resolver pathResolver class
  */
 namespace tomk79\pickles2\pathResolver;
 
 /**
- * Pickles2 DEC CORE class
+ * pickles2/px2-path-resolver pathResolver class
  */
-class main{
+class pathResolver{
 	private $px, $options;
-
-	/**
-	 * 変換処理の実行
-	 * @param object $px Picklesオブジェクト
-	 */
-	public static function exec( $px, $options = null ){
-		// var_dump($options);
-		(new self($px, $options))->resolve();
-		return true;
-	}
 
 	/**
 	 * constructor
@@ -31,7 +21,6 @@ class main{
 			$this->options = $options;
 		}
 		$this->options = json_decode(json_encode($options));
-		require_once(__DIR__.'/simple_html_dom.php');
 	}
 
 	/**

@@ -30,7 +30,10 @@
     } ,
     "autoload": {
         "files": [
-            "php/pathResolver.php"
+            "php/main.php",
+            "php/pathResolver.php",
+            "php/resolveCommonContents.php",
+            "php/simple_html_dom.php"
         ]
     }
 }

@@ -33,6 +33,7 @@
 	background-image: url(/common/scripts/../images/title1.gif);
 	background-image: url('/common/scripts/../images/title2.gif');
 	background-image: url("/common/scripts/../images/title3.gif");
+	background-image: url("./common/scripts/../images/title4.gif");
 }
 </style>
 
@@ -43,3 +44,21 @@
 <p><img src="about:blank" alt="attr
 test
 1" /></p>
+
+
+<h2>test: resolved path</h2>
+<ul>
+<li><a href="http://www.pxt.jp/ja/diary/">http://url/</a></li>
+<li><a href="https://www.pxt.jp/ja/diary/">https://url/</a></li>
+<li><a href="//www.pxt.jp/ja/diary/">//url/</a></li>
+<li><a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAMAAACeL25MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUZBREVFNkZBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUZBREVFNzBBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRkFERUU2REE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRkFERUU2RUE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmwrsdQAAAAGUExURS+h5wAAAFVywYsAAAAOSURBVHjaYmDABAABBgAAFAABaEkyYwAAAABJRU5ErkJggg==">data scheme</a></li>
+<li><a href="file:///www/htdocs/index.html">file scheme</a></li>
+<li><a href="#hash">#hash</a></li>
+</ul>
+
+<h2>test: resolve common contents</h2>
+<?php ob_start(); ?>
+<link rel="stylesheet" href="./index_files/sample.css" />
+<script src="./index_files/sample.js"></script>
+<?php $px->bowl()->send( ob_get_clean(), 'head' );?>
+<p><a href="index_files/sampleimage.png"><img src="index_files/sampleimage.png" alt="" /></a></p>
