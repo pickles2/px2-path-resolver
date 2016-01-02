@@ -173,7 +173,7 @@ class resolveCommonContents{
 			$to = 'absolute';
 		}
 
-		$cd_content_based = $this->px->href( $page_info['content'] );
+		$cd_content_based = $this->px->href( $this->page_info['content'] );
 		$cd_content_based = preg_replace( '/^(.*)(\/.*?)$/si', '$1', $cd_content_based );
 		if( !strlen($cd_content_based) ){
 			$cd_content_based = '/';
