@@ -882,6 +882,34 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 	}
 
+	/**
+	 * 大きすぎてパースできないHTMLを変換にかけるテスト
+	 */
+	public function testTooBigHtml(){
+		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
+		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['pass_strip'] );
+		$output = $this->passthru( [
+			'php',
+			__DIR__.'/testdata/standard/.px_execute.php',
+			'-o', 'json',
+			'/broken.html'
+		] );
+		$output = json_decode($output);
+		// var_dump($output->errors);
+
+		$this->assertNotEmpty( $output->errors );
+
+		// 後始末
+		$output = $this->passthru( [
+			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
+		] );
+
+		clearstatcache();
+		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
+		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
+
+	}
+
 
 
 	/**
