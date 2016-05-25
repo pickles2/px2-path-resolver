@@ -53,7 +53,7 @@ class pathResolver{
 	 */
 	private function path_resolve_in_html( $src ){
 
-		// data-dec-blockブロックを削除
+		// HTMLをパース
 		$html = str_get_html(
 			$src ,
 			false, // $lowercase
@@ -63,6 +63,12 @@ class pathResolver{
 			DEFAULT_BR_TEXT, // $defaultBRText
 			DEFAULT_SPAN_TEXT // $defaultSpanText
 		);
+
+		if($html === false){
+			// HTMLパースに失敗した場合、無加工のまま返す。
+			$this->px->error('HTML Parse ERROR. $src size '.strlen($src).' byte(s) given; '.__FILE__.' ('.__LINE__.')');
+			return $src;
+		}
 
 		$conf_dom_selectors = array(
 			'*[href]'=>'href',
