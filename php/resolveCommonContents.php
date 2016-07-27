@@ -67,6 +67,10 @@ class resolveCommonContents{
 			DEFAULT_SPAN_TEXT // $defaultSpanText
 		);
 
+		if( $html === false ){
+			return $src;
+		}
+
 		$conf_dom_selectors = array(
 			'*[href]'=>'href',
 			'*[src]'=>'src',
