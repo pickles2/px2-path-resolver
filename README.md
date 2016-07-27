@@ -107,6 +107,17 @@ return call_user_func( function(){
 ```
 
 
+## 更新履歴 - Change log
+
+### px2-path-resolver 2.0.7 (2016年7月27日)
+
+- `tomk79\pickles2\pathResolver\main::resolve_common_contents()` で、 `content` が 0バイト のファイルの場合に異常終了する不具合を修正。
+
+### px2-path-resolver 2.0.6 (2016年5月25日)
+
+- HTML 1枚 のファイルサイズが大きくてパースに失敗する場合のエラー処理を追加。
+
+
 ## ライセンス - License
 
 MIT License
