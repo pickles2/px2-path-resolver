@@ -109,6 +109,10 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
+### px2-path-resolver 2.0.8 (2018年??月??日)
+
+- `resolve_common_contents()` が、 `path` または `content` が未定義のページでエラーを起こす不具合を修正。
+
 ### px2-path-resolver 2.0.7 (2016年7月27日)
 
 - `tomk79\pickles2\pathResolver\main::resolve_common_contents()` で、 `content` が 0バイト のファイルの場合に異常終了する不具合を修正。

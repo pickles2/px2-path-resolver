@@ -25,6 +25,14 @@ class resolveCommonContents{
 
 		$page_info = $this->px->site()->get_current_page_info();
 		// var_dump($page_info);
+		if( !is_array($page_info) ){
+			// サイトマップに定義されていない場合は何もしない
+			return true;
+		}
+		if( !array_key_exists('path', $page_info) || !array_key_exists('content', $page_info) ){
+			// path または content が未定義な場合は何もしない
+			return true;
+		}
 		if( $page_info['path'] === $page_info['content'] ){
 			// path と content の値が一致する場合は何もしない
 			return true;

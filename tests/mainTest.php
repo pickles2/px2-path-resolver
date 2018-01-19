@@ -99,6 +99,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
 		// 存在しないコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
@@ -207,6 +212,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
@@ -322,6 +332,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
 		// 存在しないコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
@@ -429,6 +444,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
@@ -544,6 +564,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
 		// 存在しないコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
@@ -652,6 +677,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
@@ -766,6 +796,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
 		// 存在しないコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
@@ -834,6 +869,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
@@ -906,6 +946,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
 		// 存在しないコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
@@ -972,6 +1017,11 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+
+		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
