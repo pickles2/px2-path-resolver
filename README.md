@@ -40,10 +40,10 @@ _px2-path-resolver_ は、[Pickles 2](http://pickles2.pxt.jp/) に、相対パ�
 
 ### 2. composer.json に、パッケージ情報を追加
 
-```
+```json
 {
     "require": {
-        "pickles2/px2-path-resolver": "2.*"
+        "pickles2/px2-path-resolver": "^2.0"
     }
 }
 ```
@@ -60,7 +60,7 @@ $ composer update
 
 `$conf->funcs->before_output` に、プラグイン設定を追加します。
 
-```
+```php
 <?php
 return call_user_func( function(){
 
@@ -108,6 +108,10 @@ return call_user_func( function(){
 
 
 ## 更新履歴 - Change log
+
+### px2-path-resolver 2.0.9 (2018年8月30日)
+
+- 細かい不具合の修正。
 
 ### px2-path-resolver 2.0.8 (2018年1月24日)
 
