@@ -1,7 +1,7 @@
 {
     "name": "pickles2/px2-path-resolver" ,
     "description": "Pickles 2 に、相対パス・絶対パスでの書き出しオプションを追加します。" ,
-    "keywords": ["pickles"] ,
+    "keywords": ["pickles2"] ,
     "license": "MIT" ,
     "authors": [
         {
