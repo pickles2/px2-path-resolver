@@ -48,6 +48,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="hogefuga://foo/bar.html">unknown scheme</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html?param1=http://foobar.com/&amp;param2=http://foobar.com/">double slashes in param</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html#param=http://foobar.com/">double slashes in #hash</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#hash">#hash</a>', '/').'/s', $output) );
 
 
 		// $this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
@@ -65,6 +66,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="../?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="../index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="../param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -96,6 +98,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//www.pxt.jp/ja/diary/">//url/</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAMAAACeL25MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUZBREVFNkZBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUZBREVFNzBBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRkFERUU2REE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRkFERUU2RUE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmwrsdQAAAAGUExURS+h5wAAAFVywYsAAAAOSURBVHjaYmDABAABBgAAFAABaEkyYwAAAABJRU5ErkJggg==">data scheme</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="file:///www/htdocs/index.html">file scheme</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="hogefuga://foo/bar.html">unknown scheme</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html?param1=http://foobar.com/&amp;param2=http://foobar.com/">double slashes in param</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html#param=http://foobar.com/">double slashes in #hash</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#hash">#hash</a>', '/').'/s', $output) );
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
@@ -146,6 +152,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -182,6 +189,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -212,6 +220,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//www.pxt.jp/ja/diary/">//url/</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAMAAACeL25MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUZBREVFNkZBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUZBREVFNzBBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRkFERUU2REE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRkFERUU2RUE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmwrsdQAAAAGUExURS+h5wAAAFVywYsAAAAOSURBVHjaYmDABAABBgAAFAABaEkyYwAAAABJRU5ErkJggg==">data scheme</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="file:///www/htdocs/index.html">file scheme</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="hogefuga://foo/bar.html">unknown scheme</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html?param1=http://foobar.com/&amp;param2=http://foobar.com/">double slashes in param</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html#param=http://foobar.com/">double slashes in #hash</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#hash">#hash</a>', '/').'/s', $output) );
 
 		// 0バイトのコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
@@ -262,6 +274,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -303,6 +316,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -327,6 +341,9 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//www.pxt.jp/ja/diary/">//url/</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAMAAACeL25MAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUZBREVFNkZBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUZBREVFNzBBOTFDMTFFNUEzQUQ4OUIxMzVBQ0ZFMzUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFRkFERUU2REE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFRkFERUU2RUE5MUMxMUU1QTNBRDg5QjEzNUFDRkUzNSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmwrsdQAAAAGUExURS+h5wAAAFVywYsAAAAOSURBVHjaYmDABAABBgAAFAABaEkyYwAAAABJRU5ErkJggg==">data scheme</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="file:///www/htdocs/index.html">file scheme</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="hogefuga://foo/bar.html">unknown scheme</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html?param1=http://foobar.com/&amp;param2=http://foobar.com/">double slashes in param</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="//foo/bar.html#param=http://foobar.com/">double slashes in #hash</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#hash">#hash</a>', '/').'/s', $output) );
 
 
@@ -377,6 +394,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "./common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -418,6 +436,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "../common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -494,6 +513,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -535,6 +555,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -610,6 +631,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -651,6 +673,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -726,6 +749,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -767,6 +791,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/path_test_1/param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -843,6 +868,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -917,6 +943,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./index.html?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );
@@ -991,6 +1018,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-4</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./?test=abc#test">test3-5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#test4">test4</a>', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./param_no_convert.html?param=//./../.../#//./../.../">test5</a>', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents1.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents2.css";', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import "/common/scripts/../styles/contents3.css" all and (max-width:580px);', '/').'/s', $output) );

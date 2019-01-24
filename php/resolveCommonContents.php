@@ -176,8 +176,13 @@ class resolveCommonContents{
 	 * 変換後の新しいパスを取得
 	 */
 	private function get_new_path( $path ){
-		if( preg_match( '/^(?:[a-zA-Z0-9]+\:|\/\/|\#)/', $path ) ){
+		if( preg_match( '/^(?:[a-zA-Z0-9]+\:|\/\/|\#|\?)/', $path ) ){
 			return $path;
+		}
+
+		$path_parts = parse_url($path);
+		if( array_key_exists('path', $path_parts) ){
+			$path = $path_parts['path'];
 		}
 
 		$to = 'relate';
@@ -227,6 +232,13 @@ class resolveCommonContents{
 		// 	// 省略できるインデックスファイル名を削除
 		// 	$path = preg_replace('/\/(?:'.$this->px->get_directory_index_preg_pattern().')((?:\?|\#).*)?$/si','/$1',$path);
 		// }
+
+		if( array_key_exists('query', $path_parts) ){
+			$path .= '?'.$path_parts['query'];
+		}
+		if( array_key_exists('fragment', $path_parts) ){
+			$path .= '#'.$path_parts['fragment'];
+		}
 
 		return $path;
 	}
