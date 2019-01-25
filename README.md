@@ -109,7 +109,7 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
-### px2-path-resolver v2.0.10 (2019年1月31日)
+### px2-path-resolver v2.0.10 (2019年1月25日)
 
 - GETパラメータ部分やアンカー部分に未解決のパスが含まれているときに、これを変換しないようにした。
 
