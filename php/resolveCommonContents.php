@@ -69,12 +69,11 @@ class resolveCommonContents{
 		// もとの文字セットを記憶 → UTF-8 に一時変換 → Simple HTML Parser → 最後にもとの文字セットに変換しなおす
 		// という処理で対応した。
 		$detect_encoding = mb_detect_encoding($src);
-		$src = mb_convert_encoding( $src, DEFAULT_TARGET_CHARSET );
 
 
 		// data-dec-blockブロックを削除
 		$html = str_get_html(
-			$src ,
+			mb_convert_encoding( $src, DEFAULT_TARGET_CHARSET, $detect_encoding ) ,
 			false, // $lowercase
 			false, // $forceTagsClosed
 			DEFAULT_TARGET_CHARSET, // $target_charset
