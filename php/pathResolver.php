@@ -53,6 +53,14 @@ class pathResolver{
 	 */
 	private function path_resolve_in_html( $src ){
 
+		// Simple HTML Parser を通したときに、
+		// もとの文字セットが無視されて DEFAULT_TARGET_CHARSET (=UTF-8) に変換されてしまう問題に対して、
+		// もとの文字セットを記憶 → UTF-8 に一時変換 → Simple HTML Parser → 最後にもとの文字セットに変換しなおす
+		// という処理で対応した。
+		$detect_encoding = mb_detect_encoding($src);
+		$src = mb_convert_encoding( $src, DEFAULT_TARGET_CHARSET );
+
+
 		// HTMLをパース
 		$html = str_get_html(
 			$src ,
@@ -106,6 +114,9 @@ class pathResolver{
 		}
 
 		$src = $html->outertext;
+
+		// もとの文字セットを復元
+		$src = mb_convert_encoding( $src, $detect_encoding );
 
 		return $src;
 	}
