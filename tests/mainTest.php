@@ -79,6 +79,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/styles/url_contents2.css");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/styles/url_contents3.css");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/styles/url_contents4.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/styles/url_contents(5.1).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/styles/url_contents(5.2).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/styles/url_contents(5.3).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/scripts/../styles/url_contents6.css");', '/').'/s', $output) );
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("/common/images/title2.gif");', '/').'/s', $output) );
@@ -165,6 +169,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents2.css");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents3.css");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents4.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents(5.1).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents(5.2).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("./common/styles/url_contents(5.3).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/scripts/../styles/url_contents6.css");', '/').'/s', $output) );
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("./common/images/title2.gif");', '/').'/s', $output) );
@@ -202,6 +210,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents2.css");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents3.css");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents4.css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents(5.1).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents(5.2).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("../common/styles/url_contents(5.3).css");', '/').'/s', $output) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('@import url("/common/scripts/../styles/url_contents6.css");', '/').'/s', $output) );
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title1.gif");', '/').'/s', $output) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('background-image: url("../common/images/title2.gif");', '/').'/s', $output) );

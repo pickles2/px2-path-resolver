@@ -109,6 +109,10 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
+### px2-path-resolver v2.0.12 (リリース日未定)
+
+- ??????????????????????
+
 ### px2-path-resolver v2.0.11 (2019年4月19日)
 
 - パス変換時に、もとの文字セットが無視されて UTF-8 に変換されてしまう不具合を修正。
