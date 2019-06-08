@@ -111,7 +111,7 @@ return call_user_func( function(){
 
 ### px2-path-resolver v2.0.12 (リリース日未定)
 
-- CSSファイル名に `)` 記号を含められない不具合を修正。
+- CSSが参照するファイル名に `)` 記号を含められない不具合を修正。
 
 ### px2-path-resolver v2.0.11 (2019年4月19日)
 
