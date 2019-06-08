@@ -109,7 +109,7 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
-### px2-path-resolver v2.0.12 (リリース日未定)
+### px2-path-resolver v2.0.12 (2019年6月8日)
 
 - CSSが参照するファイル名に `)` 記号を含められない不具合を修正。
 
@@ -146,5 +146,5 @@ MIT License
 ## 作者 - Author
 
 - (C)Tomoya Koyanagi <tomk79@gmail.com>
-- website: <http://www.pxt.jp/>
-- Twitter: @tomk79 <http://twitter.com/tomk79/>
+- website: <https://www.pxt.jp/>
+- Twitter: @tomk79 <https://twitter.com/tomk79/>
