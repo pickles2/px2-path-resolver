@@ -109,6 +109,10 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
+### px2-path-resolver v2.0.13 (2019年9月4日)
+
+- PHP 7.3 系で発生する不具合を修正。
+
 ### px2-path-resolver v2.0.12 (2019年6月8日)
 
 - CSSが参照するファイル名に `)` 記号を含められない不具合を修正。
