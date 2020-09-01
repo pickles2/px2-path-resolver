@@ -60,7 +60,12 @@ class pathResolver{
 		$detect_encoding = mb_detect_encoding($src);
 
 
+		$is_large_content = (strlen($src) > 600*1000);
+
 		// HTMLをパース
+		if($is_large_content){
+			set_time_limit(120);
+		}
 		$html = str_get_html(
 			mb_convert_encoding( $src, DEFAULT_TARGET_CHARSET, $detect_encoding ) ,
 			false, // $lowercase
@@ -70,6 +75,9 @@ class pathResolver{
 			DEFAULT_BR_TEXT, // $defaultBRText
 			DEFAULT_SPAN_TEXT // $defaultSpanText
 		);
+		if($is_large_content){
+			set_time_limit(30);
+		}
 
 		if($html === false){
 			// HTMLパースに失敗した場合、無加工のまま返す。

@@ -242,6 +242,12 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		// var_dump($output);
 		$this->assertTrue( $this->common_error( $output ) );
 
+		// 大きいサイズのコンテンツを処理するテスト
+		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/large_content.html'] );
+		// var_dump($output);
+		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertEquals( 1, preg_match('/'.preg_quote('<p><a href="./index.html">index</a></p>', '/').'/s', $output) );
+
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
 		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
@@ -1089,6 +1095,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	 * 大きすぎてパースできないHTMLを変換にかけるテスト
 	 */
 	public function testTooBigHtml(){
+		@ini_set( 'memory_limit' , -1 );
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['pass_strip'] );
 		$output = $this->passthru( [

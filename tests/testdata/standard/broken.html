@@ -1,5 +1,5 @@
-
-<?php for( $i = 1; $i < 30000; $i ++ ){ ?>
+<?php for( $i = 1; $i < 600*1000*1000/100; $i ++ ){ ?>
+<?php set_time_limit(30); ?>
 <!--
 HTMLドキュメントのサイズが大きくなると、
 Simple HTML DOM Parser がパースに失敗する。
@@ -7,3 +7,4 @@ Simple HTML DOM Parser がパースに失敗する。
 <p><a href="this is a too BIG HTML file."></a></p>
 
 <?php } ?>
+<?php set_time_limit(0); ?>
