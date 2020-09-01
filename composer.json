@@ -14,6 +14,7 @@
             "php ./vendor/phpunit/phpunit/phpunit"
         ]
     } ,
+    "minimum-stability": "dev",
     "repositories": [
     ] ,
     "require": {
@@ -23,8 +24,8 @@
     "require-dev": {
         "pickles2/broccoli-module-fess": "dev-master",
         "pickles2/broccoli-module-plain-html-elements": "dev-master",
-        "pickles2/px-fw-2.x": "dev-master" ,
-        "pickles2/px2-px2dthelper": "dev-master" ,
+        "pickles2/px-fw-2.x": "^2.0" ,
+        "pickles2/px2-px2dthelper": "^2.0" ,
         "pickles2/px2-sitemapexcel": "2.*" ,
         "phpunit/phpunit": "4.1.*"
     } ,
