@@ -109,39 +109,39 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
-### px2-path-resolver v2.0.14 (リリース日未定)
+### pickles2/px2-path-resolver v2.0.14 (2020年10月17日)
 
 - サイズの大きなコンテンツを処理できない問題を修正。 600MBまで扱えるようになった。
 
-### px2-path-resolver v2.0.13 (2019年9月4日)
+### pickles2/px2-path-resolver v2.0.13 (2019年9月4日)
 
 - PHP 7.3 系で発生する不具合を修正。
 
-### px2-path-resolver v2.0.12 (2019年6月8日)
+### pickles2/px2-path-resolver v2.0.12 (2019年6月8日)
 
 - CSSが参照するファイル名に `)` 記号を含められない不具合を修正。
 
-### px2-path-resolver v2.0.11 (2019年4月19日)
+### pickles2/px2-path-resolver v2.0.11 (2019年4月19日)
 
 - パス変換時に、もとの文字セットが無視されて UTF-8 に変換されてしまう不具合を修正。
 
-### px2-path-resolver v2.0.10 (2019年1月25日)
+### pickles2/px2-path-resolver v2.0.10 (2019年1月25日)
 
 - GETパラメータ部分やアンカー部分に未解決のパスが含まれているときに、これを変換しないようにした。
 
-### px2-path-resolver v2.0.9 (2018年8月30日)
+### pickles2/px2-path-resolver v2.0.9 (2018年8月30日)
 
 - 細かい不具合の修正。
 
-### px2-path-resolver v2.0.8 (2018年1月24日)
+### pickles2/px2-path-resolver v2.0.8 (2018年1月24日)
 
 - `resolve_common_contents()` が、 `path` または `content` が未定義のページでエラーを起こす不具合を修正。
 
-### px2-path-resolver v2.0.7 (2016年7月27日)
+### pickles2/px2-path-resolver v2.0.7 (2016年7月27日)
 
 - `tomk79\pickles2\pathResolver\main::resolve_common_contents()` で、 `content` が 0バイト のファイルの場合に異常終了する不具合を修正。
 
-### px2-path-resolver v2.0.6 (2016年5月25日)
+### pickles2/px2-path-resolver v2.0.6 (2016年5月25日)
 
 - HTML 1枚 のファイルサイズが大きくてパースに失敗する場合のエラー処理を追加。
 
