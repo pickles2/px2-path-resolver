@@ -109,6 +109,10 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
+### pickles2/px2-path-resolver v2.0.15 (リリース日未定)
+
+- その他の内部コード修正。
+
 ### pickles2/px2-path-resolver v2.0.14 (2020年10月17日)
 
 - サイズの大きなコンテンツを処理できない問題を修正。 600MBまで扱えるようになった。

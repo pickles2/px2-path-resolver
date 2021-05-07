@@ -30,10 +30,12 @@
         "phpunit/phpunit": "4.1.*"
     } ,
     "autoload": {
+        "psr-4": {
+            "tomk79\\pickles2\\pathResolver\\": [
+                "php"
+            ]
+        },
         "files": [
-            "php/main.php",
-            "php/pathResolver.php",
-            "php/resolveCommonContents.php",
             "php/simple_html_dom.php"
         ]
     }
