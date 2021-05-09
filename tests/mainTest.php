@@ -5,11 +5,14 @@
 
 class mainTest extends PHPUnit_Framework_TestCase{
 	private $fs;
+	private $utils;
 	private $testJson;
 
 	public function setup(){
 		mb_internal_encoding('UTF-8');
 		$this->fs = new tomk79\filesystem();
+		require_once(__DIR__.'/libs/utils.php');
+		$this->utils = new \tomk79\pickles2\pathResolver\tests\utils();
 
 		// テスト用設定
 		$this->testJson = array();
@@ -31,7 +34,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testResolveCommonContents(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_resolve_common_contents.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		// $this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		// このパターンは、変換器を通らないのが正解
@@ -52,7 +55,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// $this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -108,23 +111,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#hash">#hash</a>', '/').'/s', $output) );
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -142,7 +145,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testRelate(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -183,7 +186,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('border-image: url(&quot;./common/images/title3.gif&quot;);', '/').'/s', $output) );
 
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="../abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -238,29 +241,29 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="#hash">#hash</a>', '/').'/s', $output) );
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 大きいサイズのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/large_content.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/large_content.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<p><a href="./index.html">index</a></p>', '/').'/s', $output) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -278,7 +281,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testRelateSupply(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -320,7 +323,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="../abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -366,23 +369,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -398,7 +401,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testRelateStrip(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate_strip'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="./abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -440,7 +443,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="../abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -483,23 +486,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -517,7 +520,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testAbsolute(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -559,7 +562,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -602,23 +605,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -635,7 +638,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testAbsoluteSupply(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -677,7 +680,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -720,23 +723,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -753,7 +756,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testAbsoluteStrip(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute_strip'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -795,7 +798,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['absolute_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_1/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/def/ghi.html">test1</a>', '/').'/s', $output) );
@@ -838,23 +841,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -872,7 +875,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testPass(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['pass'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/defDummy/../def/./ghi.html">test1</a>', '/').'/s', $output) );
@@ -915,23 +918,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -947,7 +950,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testPassSupply(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['pass_supply'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/defDummy/../def/./ghi.html">test1</a>', '/').'/s', $output) );
@@ -990,23 +993,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -1022,7 +1025,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	public function testPassStrip(){
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['pass_strip'] );
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/'] );
 		// var_dump($output);
 
 		$this->assertEquals( 1, preg_match('/'.preg_quote('<a href="/abc/defDummy/../def/./ghi.html">test1</a>', '/').'/s', $output) );
@@ -1065,23 +1068,23 @@ class mainTest extends PHPUnit_Framework_TestCase{
 
 
 		// 0バイトのコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_0bite/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// サイトマップに記載がないがコンテンツファイル自体は存在しているコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/not_defined_in_sitemap.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 		// 存在しないコンテンツを処理するテスト
-		$output = $this->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
+		$output = $this->utils->passthru( ['php', __DIR__.'/testdata/standard/.px_execute.php', '/path_test_not_exists/index.html'] );
 		// var_dump($output);
-		$this->assertTrue( $this->common_error( $output ) );
+		$this->assertTrue( $this->utils->common_error( $output ) );
 
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -1098,7 +1101,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		@ini_set( 'memory_limit' , -1 );
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_exec.php', __DIR__.'/testdata/standard/px-files/config.php' );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['pass_strip'] );
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php',
 			__DIR__.'/testdata/standard/.px_execute.php',
 			'-o', 'json',
@@ -1110,7 +1113,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertNotEmpty( $output->errors );
 
 		// 後始末
-		$output = $this->passthru( [
+		$output = $this->utils->passthru( [
 			'php', __DIR__.'/testdata/standard/.px_execute.php', '/?PX=clearcache'
 		] );
 
@@ -1118,36 +1121,6 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->assertTrue( !is_dir( __DIR__.'/testdata/standard/caches/p/' ) );
 		$this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
 
-	}
-
-
-
-	/**
-	 * PHPがエラー吐いてないか確認しておく。
-	 */
-	private function common_error( $output ){
-		if( preg_match('/'.preg_quote('Fatal', '/').'/si', $output) ){ return false; }
-		if( preg_match('/'.preg_quote('Warning', '/').'/si', $output) ){ return false; }
-		if( preg_match('/'.preg_quote('Notice', '/').'/si', $output) ){ return false; }
-		return true;
-	}
-
-	/**
-	 * コマンドを実行し、標準出力値を返す
-	 * @param array $ary_command コマンドのパラメータを要素として持つ配列
-	 * @return string コマンドの標準出力値
-	 */
-	private function passthru( $ary_command ){
-		$cmd = array();
-		foreach( $ary_command as $row ){
-			$param = '"'.addslashes($row).'"';
-			array_push( $cmd, $param );
-		}
-		$cmd = implode( ' ', $cmd );
-		ob_start();
-		passthru( $cmd );
-		$bin = ob_get_clean();
-		return $bin;
 	}
 
 }

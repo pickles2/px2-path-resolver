@@ -14,6 +14,9 @@
             "php ./vendor/phpunit/phpunit/phpunit"
         ]
     } ,
+    "config": {
+        "process-timeout": 0
+    },
     "minimum-stability": "dev",
     "repositories": [
     ] ,
