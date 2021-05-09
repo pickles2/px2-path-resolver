@@ -25,6 +25,14 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->testJson['relate_strip'] = '{"to": "relate","supply_index_filename": false}';
 		$this->testJson['absolute_strip'] = '{"to": "absolute","supply_index_filename": false}';
 		$this->testJson['pass_strip'] = '{"to": "pass","supply_index_filename": false}';
+
+		// Note:
+		if( substr(PHP_OS,0,3) == 'WIN' || preg_match('/^5\./', phpversion()) ){
+			$note = 'NOTE: 古い PHP 5系 と Windows 環境では、'."\n"
+				.'大きい文字列を処理しきれず、タイムアウトが起きたため、'."\n"
+				.'大容量コンテンツの処理に関するテスト項目では、文字量が減らされています。';
+			var_dump($note);
+		}
 	}
 
 
@@ -1108,7 +1116,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 			'/broken.html'
 		] );
 		$output = json_decode($output);
-		var_dump($output->errors);
+		// var_dump($output->errors);
 
 		$this->assertNotEmpty( $output->errors );
 
