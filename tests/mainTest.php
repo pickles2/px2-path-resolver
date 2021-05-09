@@ -33,6 +33,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	 */
 	public function testResolveCommonContents(){
 var_dump(__LINE__);flush();
+var_dump(PHP_OS);
 		$this->fs->copy( __DIR__.'/testdata/standard/px-files/testconfs/config_resolve_common_contents.php', __DIR__.'/testdata/standard/px-files/config.php' );
 var_dump(__LINE__);flush();
 		// $this->fs->save_file( __DIR__.'/testdata/standard/px-files/options.json', $this->testJson['relate'] );
@@ -1303,7 +1304,7 @@ var_dump(__LINE__);flush();
 		] );
 var_dump(__LINE__);flush();
 		$output = json_decode($output);
-		// var_dump($output->errors);
+		var_dump($output->errors);
 var_dump(__LINE__);flush();
 
 		$this->assertNotEmpty( $output->errors );

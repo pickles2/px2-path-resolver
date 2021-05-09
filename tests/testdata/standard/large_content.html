@@ -3,9 +3,11 @@
 // テストコード実行にかかる負担が大きすぎるので、
 // 約 10MB でテストする。
 $counter = 10*1000*1000/1000;
-if( preg_match('/^5\./') ){
-	// 古い PHP 5系 では、10MBを処理しきれず、タイムアウトが起きたため、数を減らす。
-	// $counter = $counter/10;
+if( substr(PHP_OS,0,3) == 'WIN' || preg_match('/^5\./', phpversion()) ){
+	// NOTE: 古い PHP 5系 と Windows 環境では、
+	// 大きい文字列を処理しきれず、タイムアウトが起きたため、
+	// 数を減らすことにした。
+	$counter = $counter/10;
 }
 
 for( $i = 0; $i < $counter; $i ++ ){
@@ -111,7 +113,7 @@ for( $i = 0; $i < $counter; $i ++ ){
 		."0123456789"
 		."012345</p>";
 }
-set_time_limit(30);
+set_time_limit(0);
 ?>
 
 <p><a href="index.html">index</a></p>
