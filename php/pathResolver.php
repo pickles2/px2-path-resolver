@@ -64,7 +64,7 @@ class pathResolver{
 
 		// HTMLをパース
 		if($is_large_content){
-			set_time_limit(120);
+			set_time_limit(600);
 		}
 		$html = str_get_html(
 			mb_convert_encoding( $src, DEFAULT_TARGET_CHARSET, $detect_encoding ) ,
