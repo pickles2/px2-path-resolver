@@ -7,6 +7,7 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	private $fs;
 	private $utils;
 	private $testJson;
+	private $is_smallenv = false;
 
 	public function setup(){
 		mb_internal_encoding('UTF-8');
@@ -26,6 +27,9 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$this->testJson['absolute_strip'] = '{"to": "absolute","supply_index_filename": false}';
 		$this->testJson['pass_strip'] = '{"to": "pass","supply_index_filename": false}';
 
+		if( substr(PHP_OS,0,3) == 'WIN' || preg_match('/^5\./', phpversion()) ){
+			$this->is_smallenv = true;
+		}
 	}
 
 
@@ -33,8 +37,8 @@ class mainTest extends PHPUnit_Framework_TestCase{
 	 * Note:
 	 */
 	public function testNote(){
-		// Note:
-		if( substr(PHP_OS,0,3) == 'WIN' || preg_match('/^5\./', phpversion()) ){
+		if( $this->is_smallenv ){
+			// Note:
 			$note = "\n"
 				."\n"."\n"
 				.'  NOTE: 古い PHP 5系 と Windows 環境では、'."\n"
@@ -1127,7 +1131,10 @@ class mainTest extends PHPUnit_Framework_TestCase{
 		$output = json_decode($output);
 		// var_dump($output->errors);
 
-		$this->assertNotEmpty( $output->errors );
+		if( !$this->is_smallenv ){
+			$this->assertNotEmpty( $output->errors );
+		}
+
 
 		// 後始末
 		$output = $this->utils->passthru( [
