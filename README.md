@@ -111,7 +111,7 @@ return call_user_func( function(){
 
 ### pickles2/px2-path-resolver v2.0.15 (リリース日未定)
 
-- その他の内部コード修正。
+- 内部コードの修正。
 
 ### pickles2/px2-path-resolver v2.0.14 (2020年10月17日)
 

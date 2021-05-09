@@ -15,6 +15,7 @@ class resolveCommonContents{
 	 * constructor
 	 */
 	public function __construct( $px, $options ){
+		require_once(__DIR__.'/simple_html_dom.php');
 		$this->px = $px;
 	}
 

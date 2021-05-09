@@ -37,9 +37,6 @@
             "tomk79\\pickles2\\pathResolver\\": [
                 "php"
             ]
-        },
-        "files": [
-            "php/simple_html_dom.php"
-        ]
+        }
     }
 }

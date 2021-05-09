@@ -4,7 +4,7 @@ if( substr(PHP_OS,0,3) == 'WIN' || preg_match('/^5\./', phpversion()) ){
 	// NOTE: 古い PHP 5系 と Windows 環境では、
 	// 大きい文字列を処理しきれず、タイムアウトが起きたため、
 	// 大容量コンテンツの処理に関するテスト項目では、文字量が減らされています。
-	$counter = $counter/1000;
+	$counter = $counter/100;
 }
 ?>
 <?php for( $i = 1; $i < $counter; $i ++ ){ ?>

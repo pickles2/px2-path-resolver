@@ -14,6 +14,7 @@ class pathResolver{
 	 * constructor
 	 */
 	public function __construct( $px, $options ){
+		require_once(__DIR__.'/simple_html_dom.php');
 		$this->px = $px;
 		if( is_string($options) ){
 			$this->options['to'] = $options;
@@ -64,7 +65,7 @@ class pathResolver{
 
 		// HTMLをパース
 		if($is_large_content){
-			set_time_limit(600);
+			set_time_limit(1200);
 		}
 		$html = str_get_html(
 			mb_convert_encoding( $src, DEFAULT_TARGET_CHARSET, $detect_encoding ) ,
