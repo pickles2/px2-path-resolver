@@ -1,5 +1,5 @@
-"* path","* content","* id","* title","* title_breadcrumb","* title_h1","* title_label","* title_full","* logical_path","* list_flg","* layout","* orderby","* keywords","* description","* category_top_flg","* **delete_flg"
-"/index.html",,,"HOME",,,,,,"1","plain",,,,,
-"/path_test_1/index.html","/index.html",,"Path TEST 1",,,,,,"1","plain",,,,"1",
-"/path_test_0bite/index.html","/0bite.html",,"Path TEST 0 bite",,,,,,"1","plain",,,,"1",
-"/path_test_not_exists/index.html","/not_exists.html",,"Path TEST not exists",,,,,,"1","plain",,,,"1",
+"* path","* content","* id","* title","* title_breadcrumb","* title_h1","* title_label","* title_full","* logical_path","* list_flg","* layout","* orderby","* keywords","* description","* category_top_flg","* role","* proc_type","* **delete_flg"
+"/index.html",,,"HOME",,,,,,"1","plain",,,,,,,
+"/path_test_1/index.html","/index.html",,"Path TEST 1",,,,,,"1","plain",,,,"1",,,
+"/path_test_0bite/index.html","/0bite.html",,"Path TEST 0 bite",,,,,,"1","plain",,,,"1",,,
+"/path_test_not_exists/index.html","/not_exists.html",,"Path TEST not exists",,,,,,"1","plain",,,,"1",,,
