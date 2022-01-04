@@ -5,3 +5,9 @@ scss_cache
 composer.lock
 !*.gitkeep
 ~$*
+
+# PHPUnit
+.phpunit.result.cache
+
+# PHP Documentor
+.phpdoc

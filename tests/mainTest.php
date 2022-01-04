@@ -3,13 +3,13 @@
  * test for tomk79\px2-path-resolver
  */
 
-class mainTest extends PHPUnit_Framework_TestCase{
+class mainTest extends PHPUnit\Framework\TestCase{
 	private $fs;
 	private $utils;
 	private $testJson;
 	private $is_smallenv = false;
 
-	public function setup(){
+	public function setup() : void{
 		mb_internal_encoding('UTF-8');
 		$this->fs = new tomk79\filesystem();
 		require_once(__DIR__.'/libs/utils.php');

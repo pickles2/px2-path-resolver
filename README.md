@@ -109,6 +109,11 @@ return call_user_func( function(){
 
 ## 更新履歴 - Change log
 
+### pickles2/px2-path-resolver v2.1.0 (リリース日未定)
+
+- サポートするPHPのバージョンを `>=7.3.0` に変更。
+- PHP 8.1 に対応した。
+
 ### pickles2/px2-path-resolver v2.0.15 (2021年5月25日)
 
 - 内部コードの修正。

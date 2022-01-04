@@ -213,13 +213,13 @@ class resolveCommonContents{
 		}
 
 		$cd_content_based = $this->px->href( $this->page_info['content'] );
-		$cd_content_based = preg_replace( '/^(.*)(\/.*?)$/si', '$1', $cd_content_based );
+		$cd_content_based = preg_replace( '/^(.*)(\/.*?)$/si', '$1', ''.$cd_content_based );
 		if( !strlen($cd_content_based) ){
 			$cd_content_based = '/';
 		}
 
 		$cd_path_based = $this->px->href( $this->px->req()->get_request_file_path() );
-		$cd_path_based = preg_replace( '/^(.*)(\/.*?)$/si', '$1', $cd_path_based );
+		$cd_path_based = preg_replace( '/^(.*)(\/.*?)$/si', '$1', ''.$cd_path_based );
 		if( !strlen($cd_path_based) ){
 			$cd_path_based = '/';
 		}

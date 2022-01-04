@@ -58,10 +58,10 @@ class pathResolver{
 		// もとの文字セットが無視されて DEFAULT_TARGET_CHARSET (=UTF-8) に変換されてしまう問題に対して、
 		// もとの文字セットを記憶 → UTF-8 に一時変換 → Simple HTML Parser → 最後にもとの文字セットに変換しなおす
 		// という処理で対応した。
-		$detect_encoding = mb_detect_encoding($src);
+		$detect_encoding = mb_detect_encoding(''.$src);
 
 
-		$is_large_content = (strlen($src) > 600*1000);
+		$is_large_content = (strlen(''.$src) > 600*1000);
 
 		// HTMLをパース
 		if($is_large_content){
@@ -82,7 +82,7 @@ class pathResolver{
 
 		if($html === false){
 			// HTMLパースに失敗した場合、無加工のまま返す。
-			$this->px->error('HTML Parse ERROR. $src size '.strlen($src).' byte(s) given; '.__FILE__.' ('.__LINE__.')');
+			$this->px->error('HTML Parse ERROR. $src size '.strlen(''.$src).' byte(s) given; '.__FILE__.' ('.__LINE__.')');
 			return $src;
 		}
 
