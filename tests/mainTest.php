@@ -47,6 +47,7 @@ class mainTest extends PHPUnit\Framework\TestCase{
 				."\n";
 			echo( $note );
 		}
+		$this->assertTrue( true );
 	}
 
 	/**
