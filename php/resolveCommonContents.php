@@ -245,7 +245,7 @@ class resolveCommonContents{
 
 		$path = $this->px->fs()->normalize_path($path);
 
-		// if( @is_null($this->options->supply_index_filename) ){
+		// if( is_null($this->options->supply_index_filename ?? null) ){
 		// 	// null なら処理しない
 		// }elseif( $this->options->supply_index_filename ){
 		// 	// 省略されたインデックスファイル名を付与
